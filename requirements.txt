@@ -4,3 +4,4 @@ plotly
 torch
 torchvision
 pillow
+pyyaml
