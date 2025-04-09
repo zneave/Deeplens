@@ -39,30 +39,10 @@ DeepLens is an interactive dashboard designed to help machine learning engineers
 
 Then, open your browser and navigate to http://127.0.0.1:8050 to start exploring.
 
-## Project Structure
+## Project Flowchart
 
-```plaintext
-DeepLens/
-├── README.md                # Project overview, instructions, and documentation
-├── LICENSE                  # Open-source license (e.g., MIT)
-├── requirements.txt         # List of Python dependencies
-├── config/                  # Configuration files (e.g., config.yaml)
-│   └── config.yaml
-├── docs/                    # Additional documentation and resources
-│   ├── CONTRIBUTING.md      # Contribution guidelines (if applicable)
-│   ├── images/              # Screenshots, logos, and other images
-│   └── index.md             # Detailed documentation or user manual
-├── src/                     # Source code for the project
-│   ├── __init__.py
-│   ├── app.py               # Main Dash application
-│   ├── dashboard_info.py    # Modal and help info for the dashboard
-│   ├── input_handler.py     # Functions to process image uploads
-│   ├── model.py             # Loads the pretrained model and registers hooks
-│   ├── model_utils.py       # Helper functions for model activation analysis
-│   └── visualization.py     # Plotly figure generation and visualization helpers
-└── tests/                   # Unit tests and integration tests
-    └── test_app.py
-```
+![Project Flowchart](docs/images/project_structure.png)
+
 
 ## Roadmap
 

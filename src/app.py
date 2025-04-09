@@ -2,6 +2,10 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
+from project_flow.generate_flowchart import generate_project_diagram
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+generate_project_diagram(project_root)
+
 import dash
 import dash_bootstrap_components as dbc
 from dash import dcc, html
