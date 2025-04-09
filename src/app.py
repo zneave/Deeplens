@@ -7,15 +7,17 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html
 from dash.dependencies import Input, Output, State
 
-from ui.layout import get_master_layout
-from ui.activations_tab import get_activations_tab
-from ui.xai_tab import get_xai_tab
-from ui.eval_tab import get_eval_tab
-from ui.landing import get_landing_page
-from ui.dashboard_tab import get_dashboard_tab
+from ui.layouts.layout import get_master_layout
+from ui.layouts.landing import get_landing_page
+from ui.tabs.activations_tab import get_activations_tab
+from ui.tabs.xai_tab import get_xai_tab
+from ui.tabs.eval_tab import get_eval_tab
+from ui.tabs.dashboard_tab import get_dashboard_tab
+from ui.tabs.architecture_tab import get_architecture_tab
 
 from callbacks.activations_callbacks import register_callbacks as register_activation_callbacks
 from callbacks.xai_callbacks import register_callbacks as register_xai_callbacks
+from callbacks.architecture_callbacks import register_callbacks as register_architecture_callbacks
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
@@ -31,6 +33,7 @@ app.layout = html.Div(
 
 register_activation_callbacks(app)
 register_xai_callbacks(app)
+register_architecture_callbacks(app)
 
 print("=== Registered Callback Outputs ===")
 for cb in app.callback_map:
@@ -51,6 +54,8 @@ def display_page(pathname):
         return get_xai_tab()
     elif pathname == "/dashboard/evaluation":
         return get_eval_tab()
+    elif pathname == "/dashboard/architecture":
+        return get_architecture_tab()
     else:
         return html.Div([
             html.H3("404"),

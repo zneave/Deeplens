@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 
 def get_dashboard_tab():
     return dbc.Container([
+
         dbc.Row([
             dbc.Col(
                 html.H2("🧠 Welcome to DeepLens Dashboard", className="mb-4 text-center"),
@@ -25,7 +26,6 @@ def get_dashboard_tab():
                 ], className="mb-4 shadow-sm"),
                 md=4
             ),
-
             dbc.Col(
                 dbc.Card([
                     dbc.CardHeader("XAI Visualizer", className="fw-bold"),
@@ -39,7 +39,6 @@ def get_dashboard_tab():
                 ], className="mb-4 shadow-sm"),
                 md=4
             ),
-
             dbc.Col(
                 dbc.Card([
                     dbc.CardHeader("Evaluation Lab", className="fw-bold"),
@@ -53,5 +52,22 @@ def get_dashboard_tab():
                 ], className="mb-4 shadow-sm"),
                 md=4
             )
+        ]),
+
+        dbc.Row([
+            dbc.Col(
+                dbc.Card([
+                    dbc.CardHeader("Model Architecture Viewer", className="fw-bold"),
+                    dbc.CardBody([
+                        html.P(
+                            "Inspect the full layer-by-layer architecture of your model and view its structure.",
+                            className="card-text"
+                        ),
+                        dbc.Button("Go to Architecture", color="secondary", href="/dashboard/architecture")
+                    ])
+                ], className="mb-4 shadow-sm"),
+                md=4
+            )
         ])
+
     ], fluid=True)

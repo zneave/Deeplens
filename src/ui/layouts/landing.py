@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 from dash import dcc, html
-from ui.layout import BUTTON_COLOR
+from ui.layouts.layout import BUTTON_COLOR
 
 def get_landing_page():
     return dbc.Container(

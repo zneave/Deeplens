@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 from dash import html, dcc
-from ui.dashboard_info import get_dashboard_info
+from ui.info.dashboard_info import get_dashboard_info
 from helpers.config_parser import load_ui_config
 
 ui_config = load_ui_config("config/ui_config.yaml")
