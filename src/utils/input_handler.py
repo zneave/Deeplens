@@ -19,7 +19,7 @@ def process_image(contents):
         transforms.Normalize(mean=[0.485, 0.456, 0.406],
                              std=[0.229, 0.224, 0.225])
     ])
-    tensor = transform(image).unsqueeze(0)  # Add batch dimension.
+    tensor = transform(image).unsqueeze(0)
     return tensor
 
 def get_preset_image():

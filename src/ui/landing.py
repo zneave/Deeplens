@@ -7,32 +7,27 @@ def get_landing_page():
         [
             dbc.Row(
                 dbc.Col(
-                    html.H1("Welcome to DeepLens"),
-                    className="text-center mt-5"
-                )
-            ),
-            dbc.Row(
-                dbc.Col(
-                    html.P(
-                        "DeepLens is an interactive dashboard that lets you explore neural network internals. "
-                        "Click the button below to enter the dashboard and start exploring activations!",
-                        className="text-center"
-                    )
-                )
-            ),
-            dbc.Row(
-                dbc.Col(
-                    dbc.Button(
-                        "Enter Dashboard",
-                        id="enter-dashboard",
-                        color=BUTTON_COLOR,
-                        size="lg",
-                        href="/dashboard"
-                    ),
-                    className="text-center mt-4"
-                )
+                    html.Div([
+                        html.H1("Welcome to DeepLens", className="display-4 fw-bold mb-3"),
+                        html.P(
+                            "DeepLens is an interactive dashboard that lets you explore neural network internals. "
+                            "Use the tabs above to switch between activation maps, XAI visualizations, and evaluation views.",
+                            className="lead"
+                        ),
+                        dbc.Button(
+                            "Enter Dashboard",
+                            id="enter-dashboard",
+                            href="/dashboard",
+                            color="success",
+                            size="lg",
+                            className="mt-4 px-5",
+                            style={"backgroundColor": BUTTON_COLOR, "borderColor": BUTTON_COLOR}
+                        )
+                    ], className="text-center p-4")
+                ),
+                className="justify-content-center"
             )
         ],
         fluid=True,
-        className="mt-5"
+        className="pt-5"
     )

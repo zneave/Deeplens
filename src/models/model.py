@@ -1,5 +1,3 @@
-# src/models/model.py
-
 import torch
 import torchvision.models as models
 
@@ -20,15 +18,12 @@ def get_pretrained_model():
             gradients[name] = grad_output[0].detach()
         return hook
 
-    model.layer1.register_forward_hook(get_activation('layer1'))
-    model.layer2.register_forward_hook(get_activation('layer2'))
-    model.layer3.register_forward_hook(get_activation('layer3'))
-    model.layer4.register_forward_hook(get_activation('layer4'))
-
-    model.layer1.register_full_backward_hook(get_gradient('layer1'))
-    model.layer2.register_full_backward_hook(get_gradient('layer2'))
-    model.layer3.register_full_backward_hook(get_gradient('layer3'))
-    model.layer4.register_full_backward_hook(get_gradient('layer4'))
+    for name, module in model.named_modules():
+        if any(layer in name for layer in ['layer1', 'layer2', 'layer3', 'layer4']):
+            if isinstance(module, torch.nn.Conv2d):
+                print(f"Registering hook for: {name}")
+                module.register_forward_hook(get_activation(name))
+                module.register_full_backward_hook(get_gradient(name))
 
     return model
 
@@ -49,4 +44,20 @@ def run_model(input_tensor=None):
     loss = output[0, top_class]
     loss.backward(retain_graph=True)
 
+    print("Activations loaded:", list(activations.keys()))
     return activations
+
+def get_model_layers(model):
+    layers = []
+    def recursive_find_layers(model, prefix=''):
+        for name, module in model.named_children():
+            full_name = prefix + name
+            if isinstance(module, torch.nn.ModuleList):
+                recursive_find_layers(module, full_name + ".")
+            else:
+                layers.append(full_name)
+    recursive_find_layers(model)
+    return layers
+
+def get_gradients(layer_name):
+    return gradients.get(layer_name, None)
