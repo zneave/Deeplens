@@ -4,3 +4,7 @@ plotly
 torch
 torchvision
 pillow
+pyyaml
+opencv-python
+torchinfo
+dash-cytoscape
