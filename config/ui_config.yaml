@@ -1,7 +1,0 @@
-theme:
-  primary: "#1dd74e"       # Primary brand color for navbar etc.
-  light_bg: "#ffffff"      # Light mode background.
-  dark_bg: "#2c3e50"       # Dark mode background.
-  text_light: "#ecf0f1"     # Text color in dark mode.
-  text_dark: "#212529"      # Text color in light mode.
-  button: "#1dd74e"        # Preferred button color.
