@@ -14,15 +14,15 @@ class DashboardView(QWidget):
         layout = QGridLayout()
 
         self.tree = TreeView()
-        layout.addWidget(QLabel("📁 Model Layers"), 0, 0)
+        layout.addWidget(QLabel("Model Layers"), 0, 0)
         layout.addWidget(self.tree, 1, 0)
 
         self.graph = GraphView()
-        layout.addWidget(QLabel("📊 Architecture Flow"), 0, 1)
+        layout.addWidget(QLabel("Architecture Flow"), 0, 1)
         layout.addWidget(self.graph, 1, 1, 4, 1)
 
         self.details = DetailsPanel()
-        layout.addWidget(QLabel("🧠 Layer Details"), 0, 2)
+        layout.addWidget(QLabel("Layer Details"), 0, 2)
         layout.addWidget(self.details, 1, 2)
 
         self.model_summary_label = QLabel("Model Summary: Loading...")

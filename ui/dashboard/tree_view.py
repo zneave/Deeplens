@@ -1,41 +1,34 @@
 from PyQt5.QtWidgets import QTreeWidget, QTreeWidgetItem
+from PyQt5.QtCore import Qt
 
 class TreeView(QTreeWidget):
     def __init__(self):
         super().__init__()
         self.setHeaderHidden(True)
+        self.item_cache = {}
 
     def populate(self, layers):
         self.clear()
+        self.item_cache.clear()
+
         for layer in layers:
-            name_parts = layer["name"].split(".")
-            self._add_layer_to_tree(name_parts, layer)
+            self._add_layer_to_tree(layer["name"].split("."), layer)
 
-    def _add_layer_to_tree(self, path_parts, layer, parent=None):
-        if not path_parts:
-            return
+    def _add_layer_to_tree(self, path_parts, layer, parent_key=""):
+        current_key = f"{parent_key}.{path_parts[0]}" if parent_key else path_parts[0]
 
-        existing = None
-        for i in range(self.topLevelItemCount()):
-            item = self.topLevelItem(i)
-            if item.text(0) == path_parts[0]:
-                existing = item
-                break
-
-        if parent:
-            children = [parent.child(i).text(0) for i in range(parent.childCount())]
-            if path_parts[0] in children:
-                for i in range(parent.childCount()):
-                    if parent.child(i).text(0) == path_parts[0]:
-                        existing = parent.child(i)
-                        break
-
-        item = existing if existing else QTreeWidgetItem([path_parts[0]])
-
-        if parent and not existing:
-            parent.addChild(item)
-        elif not parent and not existing:
-            self.addTopLevelItem(item)
+        if current_key in self.item_cache:
+            item = self.item_cache[current_key]
+        else:
+            item = QTreeWidgetItem([path_parts[0]])
+            if parent_key:
+                parent_item = self.item_cache[parent_key]
+                parent_item.addChild(item)
+            else:
+                self.addTopLevelItem(item)
+            self.item_cache[current_key] = item
 
         if len(path_parts) > 1:
-            self._add_layer_to_tree(path_parts[1:], layer, item)
+            self._add_layer_to_tree(path_parts[1:], layer, current_key)
+        else:
+            item.setData(0, Qt.UserRole, layer)
