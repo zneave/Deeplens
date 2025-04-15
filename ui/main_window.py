@@ -17,7 +17,6 @@ class MainWindow(QMainWindow):
         self.create_menu()
 
     def init_ui(self):
-        # Set up the central stacked layout
         self.central = QWidget()
         self.layout = QStackedLayout()
         self.central.setLayout(self.layout)
@@ -30,11 +29,9 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.dashboard)
         self.setCentralWidget(self.central)
 
-        # Connect landing button
         self.landing.continue_clicked.connect(self.show_dashboard)
 
     def show_dashboard(self):
-        # Smooth transition animation
         old_geometry = self.central.geometry()
 
         self.dashboard.setGeometry(
@@ -76,4 +73,3 @@ class MainWindow(QMainWindow):
                     self.status_bar.showMessage("Only PyTorch supported right now")
             except Exception as e:
                 self.status_bar.showMessage(str(e))
-

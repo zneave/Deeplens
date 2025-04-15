@@ -6,6 +6,6 @@ def build_tree_from_layers(layers):
         current = tree
         for part in path[:-1]:
             current = current.setdefault(part, {})
-        current[path[-1]] = layer  # leaf
+        current[path[-1]] = layer
 
     return tree

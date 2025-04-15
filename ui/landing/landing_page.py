@@ -32,7 +32,6 @@ class LandingPage(QWidget):
         outer_layout.setContentsMargins(0, 0, 0, 0)
         outer_layout.setAlignment(Qt.AlignCenter)
 
-        # Card wrapper
         card = QWidget(objectName="Card")
         card_layout = QVBoxLayout(card)
         card_layout.setSpacing(24)
@@ -41,7 +40,6 @@ class LandingPage(QWidget):
         title = QLabel("Welcome to Deeplens", objectName="Title")
         subtitle = QLabel("Clarity in Complexity", objectName="Subtitle")
 
-        # Button is now very visible
         self.start_button = HoverButton("Continue to Dashboard")
         self.start_button.setFixedWidth(250)
         self.start_button.setMinimumHeight(45)
